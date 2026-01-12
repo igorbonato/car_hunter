@@ -11,7 +11,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # --- CONFIGURAÇÕES ---
 # Adicionei &categoria=3 (Hatch) na URL para já ajudar a filtrar na fonte
-URL_BUSCA = "https://m.autocarro.com.br/autobusca/carros?q=etios%201.5&ano_de=2017&preco_ate=55000&cambio=1&estado=43&categoria=3&sort=1"
+URL_BUSCA = "https://m.autocarro.com.br/autobusca/carros?q=etios%201.5&ano_de=2016&preco_ate=65000&cambio=1&estado=43&categoria=3&sort=1"
 
 # Secrets
 TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
