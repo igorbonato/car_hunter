@@ -9,7 +9,6 @@ from datetime import datetime, timedelta
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# CONFIGURAÇÕES
 URL_BUSCA = "https://m.autocarro.com.br/autobusca/carros?q=etios%201.5&ano_de=2016&preco_ate=65000&cambio=1&estado=43&sort=1"
 
 TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
@@ -103,9 +102,6 @@ def main():
             version = carro.get('version', '').upper()
             model = carro.get('model', '').upper()
             nome_completo = f"{model} {version}"
-
-            if 'SEDAN' in nome_completo:
-                continue
 
             link = carro.get('link')
             car_id = str(carro.get('id', link))
