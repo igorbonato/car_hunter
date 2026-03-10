@@ -119,6 +119,9 @@ def main():
             preco_float = limpar_preco(preco_visual)
 
             km = carro.get('km', 0)
+            
+            if km > 80000:
+                continue
 
             status_aviso = ""
             preco_antigo = memoria.get(car_id)
