@@ -118,7 +118,8 @@ def main():
             preco_visual = carro.get('priceCurrency', 'R$ 0')
             preco_float = limpar_preco(preco_visual)
 
-            km = carro.get('km', 0)
+            km_str = carro.get('km', '0')
+            km = int(km_str.replace('.', '').replace(',', '').strip())
             
             if km > 80000:
                 continue
