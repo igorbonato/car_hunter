@@ -10,6 +10,12 @@ from datetime import datetime, timedelta
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 URL_BUSCA = "https://m.autocarro.com.br/autobusca/carros?q=etios%201.5&ano_de=2017&preco_ate=65000&estado=43&sort=1"
+
+TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
+TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
+
+ARQUIVO_MEMORIA = "price_memory.json"
+
 CIDADES_PERMITIDAS = {
     "PORTO ALEGRE",
     "CANOAS",
@@ -18,11 +24,8 @@ CIDADES_PERMITIDAS = {
     "ESTEIO",
     "NOVO HAMBURGO"
 }
-TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
-TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
 
-ARQUIVO_MEMORIA = "price_memory.json"
-
+KM_MAX = 80000
 
 def enviar_telegram(msg):
     if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
@@ -116,6 +119,11 @@ def main():
             preco_visual = carro.get('priceCurrency', 'R$ 0')
             preco_float = limpar_preco(preco_visual)
 
+            km = carro.get('mileage', 0)
+
+            if km > KM_MAX:
+                continue
+
             status_aviso = ""
             preco_antigo = memoria.get(car_id)
 
@@ -149,6 +157,7 @@ def main():
                 f"{status_aviso}\n"
                 f"🚗 <b>{nome_completo}</b>\n"
                 f"💰 {preco_visual} | 📅 {year_model}\n"
+                f"🛣️ {km:,} km\n"
                 f"📍 Local: {city_name}\n"
                 f"🔗 <a href='{link}'>Ver Anúncio</a>"
             )
