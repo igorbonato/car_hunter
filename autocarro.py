@@ -9,8 +9,15 @@ from datetime import datetime, timedelta
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-URL_BUSCA = "https://m.autocarro.com.br/autobusca/carros?q=etios%201.5&ano_de=2016&preco_ate=65000&cambio=1&estado=43&sort=1"
-
+URL_BUSCA = "https://m.autocarro.com.br/autobusca/carros?q=etios%201.5&ano_de=2017&preco_ate=65000&estado=43&sort=1"
+CIDADES_PERMITIDAS = {
+    "PORTO ALEGRE",
+    "CANOAS",
+    "SAO LEOPOLDO",
+    "SÃO LEOPOLDO",
+    "ESTEIO",
+    "NOVO HAMBURGO"
+}
 TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
 TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
 
@@ -129,7 +136,11 @@ def main():
                 status_aviso = "⚪ Preço Mantido"
 
             city_id = carro.get('cityId')
-            city_name = mapa_cidades.get(city_id, str(city_id))
+            city_name = mapa_cidades.get(city_id, str(city_id)).upper()
+            
+            if city_name not in CIDADES_PERMITIDAS:
+                continue
+            
             year_model = carro.get('yearModel')
 
             print(f"-> Preparando envio: {status_aviso} - {nome_completo}")
