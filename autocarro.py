@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-URL_BUSCA = "https://m.autocarro.com.br/autobusca/carros?q=etios%201.5&ano_de=2017&preco_ate=65000&estado=43&sort=1"
+URL_BUSCA = "https://m.autocarro.com.br/autobusca/carros?q=etios%201.5&ano_de=2014&preco_ate=50000&estado=43&sort=1"
 
 TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
 TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID')
@@ -121,9 +121,6 @@ def main():
             km_str = carro.get('km', '0')
             km = int(km_str.replace('.', '').replace(',', '').strip())
             
-            if km > 80000:
-                continue
-
             status_aviso = ""
             preco_antigo = memoria.get(car_id)
 
