@@ -110,6 +110,10 @@ def main():
         for carro in lista_bruta:
             version = carro.get('version', '').upper()
             model = carro.get('model', '').upper()
+            
+            if not any(v in version for v in ["XS", "XLS"]):
+                continue
+                
             nome_completo = f"{model} {version}"
 
             link = carro.get('link')
