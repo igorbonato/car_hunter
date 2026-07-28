@@ -22,7 +22,9 @@ CIDADES_PERMITIDAS = {
     "SAO LEOPOLDO",
     "SÃO LEOPOLDO",
     "ESTEIO",
-    "NOVO HAMBURGO"
+    "NOVO HAMBURGO",
+    "CAMPO BOM",
+    "VIAMÃO"
 }
 
 
