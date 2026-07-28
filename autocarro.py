@@ -24,7 +24,8 @@ CIDADES_PERMITIDAS = {
     "ESTEIO",
     "NOVO HAMBURGO",
     "CAMPO BOM",
-    "VIAMÃO"
+    "VIAMÃO",
+    "VIAMAO"
 }
 
 
